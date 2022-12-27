@@ -1,3 +1,4 @@
+import 'package:firebase_tutorial/pages/register_page.dart';
 import 'package:firebase_tutorial/widgets/auth_page_button.dart';
 import 'package:firebase_tutorial/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future _onTapSignIn() async {
+  Future _onSignIn() async {
     try {
       showDialog(
           context: context,
@@ -38,6 +39,13 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pop(context);
       _showErrorMessage(e.code);
     }
+  }
+
+  _onTapRegisterNow() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RegisterPage()),
+    );
   }
 
   _showErrorMessage(errorCode) {
@@ -59,42 +67,44 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.grey[300],
         body: SafeArea(
             child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: SingleChildScrollView(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.android, size: 100),
-                    Text('Hello Again!',
-                        style: GoogleFonts.bebasNeue(fontSize: 52)),
-                    const SizedBox(height: 10),
-                    const Text('Welcome Back!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
-                    const SizedBox(height: 25),
-                    TextInputField(
-                        textEditingController: _emailController,
-                        hintText: 'Email'),
-                    TextInputField(
-                        textEditingController: _passwordController,
-                        hintText: 'Password',
-                        obscureText: true),
-                    AuthPageButton(buttonText: 'Sign In', onPressedButton: _onTapSignIn),
-                    const SizedBox(height: 25),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text('New Here? '),
-                          Text('Register Now',
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: SingleChildScrollView(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                          const Icon(Icons.android, size: 100),
+                          Text('Hello Again!',
+                              style: GoogleFonts.bebasNeue(fontSize: 52)),
+                          const SizedBox(height: 10),
+                          const Text('Welcome Back!',
                               style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold))
-                        ])
-                  ]),
-            ),
-          ),
-        )));
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          const SizedBox(height: 25),
+                          TextInputField(
+                              textEditingController: _emailController,
+                              hintText: 'Email'),
+                          TextInputField(
+                              textEditingController: _passwordController,
+                              hintText: 'Password',
+                              obscureText: true),
+                          AuthPageButton(
+                              buttonText: 'Sign In',
+                              onPressedButton: _onSignIn),
+                          const SizedBox(height: 25),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text('New Here? '),
+                                GestureDetector(
+                                  onTap: _onTapRegisterNow,
+                                  child: const Text('Register Now',
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.bold)),
+                                )
+                              ])
+                        ]))))));
   }
 }
