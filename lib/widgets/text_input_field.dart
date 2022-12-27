@@ -15,17 +15,16 @@ class TextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      decoration: BoxDecoration(
-          color: Colors.grey[200],
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(10)),
-      child: TextField(
-          obscureText: obscureText,
-          controller: textEditingController,
-          decoration:
-              InputDecoration(border: InputBorder.none, hintText: hintText)),
-    );
+        margin: const EdgeInsets.symmetric( vertical: 5.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        decoration: BoxDecoration(
+            color: Colors.grey[200],
+            border: Border.all(color: Colors.white),
+            borderRadius: BorderRadius.circular(10)),
+        child: TextField(
+            controller: textEditingController,
+            obscureText: obscureText,
+            decoration:
+                InputDecoration(border: InputBorder.none, hintText: hintText)));
   }
 }
