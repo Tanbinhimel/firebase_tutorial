@@ -1,3 +1,4 @@
+import 'package:firebase_tutorial/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,35 +66,12 @@ class _LoginPageState extends State<LoginPage> {
             const Text('Welcome Back!',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: TextField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Email'))),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: TextField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Password'))),
-            ),
-            const SizedBox(height: 10),
+            TextInputField(
+                textEditingController: _emailController, hintText: 'Email'),
+            TextInputField(
+                textEditingController: _passwordController,
+                hintText: 'Password',
+                obscureText: true),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
